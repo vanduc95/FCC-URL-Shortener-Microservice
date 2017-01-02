@@ -9,7 +9,8 @@ require('dotenv').config({
   silent: true
 });
 var app = express();
-mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener', function(err, db) {
+// mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener', function(err, db) {
+mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://vanduc95:01658104547@ds151018.mlab.com:51018/vanduc95-url-shortener', function(err, db) {
 
   if (err) {
     throw new Error('Database failed to connect!');
@@ -19,8 +20,9 @@ mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017
 
   // The format follows as, alias to use for real path, also allows permission to such path.
 
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'jade');
+  app.use(express.static(path.resolve(__dirname, 'views')));
+  // app.set('views', path.join(__dirname, 'views'));
+  // app.set('view engine', 'jade');
 
   db.createCollection("sites", {
     capped: true,
