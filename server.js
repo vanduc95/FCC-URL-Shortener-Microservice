@@ -21,8 +21,6 @@ mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://vanduc95:016581
   // The format follows as, alias to use for real path, also allows permission to such path.
 
   app.use(express.static(path.resolve(__dirname, 'views')));
-  // app.set('views', path.join(__dirname, 'views'));
-  // app.set('view engine', 'jade');
 
   db.createCollection("sites", {
     capped: true,
